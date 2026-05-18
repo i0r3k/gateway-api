@@ -1,3 +1,5 @@
+#$ Used in:
+#$ - guides/user-guides/listener-set.md
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
@@ -21,7 +23,7 @@ kind: Namespace
 metadata:
   name: team-1-ns
   labels:
-    belongs: shared-gateway
+    belongs-to: shared-gateway
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: ListenerSet
@@ -51,7 +53,7 @@ kind: Namespace
 metadata:
   name: team-2-ns
   labels:
-    belongs: shared-gateway
+    belongs-to: shared-gateway
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: ListenerSet
@@ -60,6 +62,7 @@ metadata:
   namespace: team-2-ns
 spec:
   parentRef:
+    namespace: default
     name: parent-gateway
     kind: Gateway
     group: gateway.networking.k8s.io
